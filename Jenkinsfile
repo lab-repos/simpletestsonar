@@ -1,8 +1,6 @@
 pipeline{
     agent any
-    environment {
-        PATH = "$PATH:C:\Users\Dare Omotosho\Documents\Documents\Setups\apache-maven-3.8.6-bin\apache-maven-3.8.6"
-    }
+
     stages{
        stage('GetCode'){
             steps{
