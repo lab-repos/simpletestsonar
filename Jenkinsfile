@@ -11,13 +11,18 @@ pipeline {
     }
        
   stages {
-    stage('Scan') {
-            steps('SonarQube Analysis') {
-                // def scannerHome = tool 'Sonar-Scanner';
-                withSonarQubeEnv(installationName:'Sonarqube') {
-                bat "${scannerHome}/bin/sonar-scanner"
-                }
+    stage('Compile') {
+            steps {
+                echo 'Compiling...'
+                bat 'mvn clean'
             }
+        }
+    stage('Scan') {
+      steps {
+        withSonarQubeEnv(installationName: 'Sonarqube') {
+          sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+        }
+      }
     }
     stage('Compile') {
             steps {
