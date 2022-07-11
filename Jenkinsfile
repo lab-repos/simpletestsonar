@@ -10,12 +10,15 @@ pipeline {
         }
     }
        
-  stage('SonarQube Analysis') {
-    def scannerHome = tool 'SonarScanner';
-    withSonarQubeEnv() {
-      sh "${scannerHome}/bin/sonar-scanner"
+  stages {
+    stage('Scan') {
+            steps('SonarQube Analysis') {
+                // def scannerHome = tool 'Sonar-Scanner';
+                withSonarQubeEnv() {
+                sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
     }
-  }
     stage('Compile') {
             steps {
                 echo 'Compiling...'
