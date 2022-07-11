@@ -14,7 +14,6 @@ pipeline {
     stage('Clean Code') {
             steps {
                 echo 'Cleaning...'
-                bat 'mvn clean'
             }
         }
     stage('Scan Code') {
