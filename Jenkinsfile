@@ -11,13 +11,13 @@ pipeline {
     }
        
   stages {
-    stage('Compile') {
+    stage('Clean Code') {
             steps {
-                echo 'Compiling...'
+                echo 'Cleaning...'
                 bat 'mvn clean'
             }
         }
-    stage('Scan') {
+    stage('Scan Code') {
       steps {
         withSonarQubeEnv(installationName: 'Sonarqube') {
           sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
